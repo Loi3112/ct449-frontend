@@ -1,18 +1,20 @@
 <template>
     <div v-if="contact" class="page">
-        <h4>Hiệu chỉnh Liên hệ</h4>
+        <h4>Hiệu chỉnh liên hệ</h4>
         <ContactForm :contact="contact" @submit:contact="updateContact" @delete:contact="deleteContact" />
         <p>{{ message }}</p>
     </div>
 </template>
+
 <script>
-import ContactForm from "@/components/ContactForm.vue"; import ContactService from "@/services/contact.service";
+import ContactForm from "@/components/ContactForm.vue";
+import ContactService from "@/services/contact.service";
 export default {
     components: {
         ContactForm,
     },
     props: {
-        id: { type: String, required: true },
+        id: { type: String, require: true },
     },
     data() {
         return {
@@ -30,7 +32,7 @@ export default {
                 this.$router.push({
                     name: "notfound",
                     params: {
-                        pathMatch: this.$route.path.split("/").slice(1)
+                        pathMatch: this.$route.path.split("/").slice(1),
                     },
                     query: this.$route.query,
                     hash: this.$route.hash,
@@ -46,10 +48,9 @@ export default {
             }
         },
         async deleteContact() {
-            if (confirm("Bạn muốn xóa Liên hệ này?")) {
+            if (confirm("Bạn muốn xóa liên hệ này?")) {
                 try {
                     await ContactService.delete(this.contact._id);
-                    this.$router.push({ name: "contactbook" });
                 } catch (error) {
                     console.log(error);
                 }
@@ -57,7 +58,8 @@ export default {
         },
     },
     created() {
-        this.getContact(this.id); this.message = "";
+        this.getContact(this.id);
+        this.message = "";
     },
 };
 </script>

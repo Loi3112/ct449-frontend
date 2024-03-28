@@ -19,9 +19,9 @@
                     </button>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-sm btn-success" @click="goToAddContact">
-                        <i class="fas fa-plus"></i> Thêm mới
-                    </button>
+                    <router-link :to="{ name: 'contact.add' }" class="btn btn-sm btn-success">
+                    <i class="fas fa-plus"></i> Thêm mới
+                </router-link>
                 </div>
                 <div class="col-md-4">
                     <button class="btn btn-sm btn-danger" @click="removeAllContacts">
